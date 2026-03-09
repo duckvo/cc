@@ -1,0 +1,45 @@
+#prac4
+# Update and upgrade packages
+sudo apt update && sudo apt upgrade -y
+
+# Check CPU virtualization support
+sudo grep -c "vmx\|svm" /proc/cpuinfo
+
+# Install CPU checker
+sudo apt install cpu-checker -y
+kvm-ok
+
+# Install KVM and related packages
+sudo apt install qemu-kvm virt-manager libvirt-daemon-system libvirt-clients bridge-utils -y
+
+# Enable and start libvirtd service
+sudo systemctl enable libvirtd
+sudo systemctl start libvirtd
+sudo systemctl status libvirtd
+
+# Add user to kvm and libvirt groups
+sudo usermod -aG kvm prathmesh70
+sudo usermod -aG libvirt prathmesh70
+
+#prac9
+
+# Update and upgrade system packages
+sudo apt update && sudo apt upgrade -y
+
+# Install MicroStack from the beta channel
+sudo snap install microstack --beta
+
+# Verify installation
+snap list microstack
+
+# Initialize MicroStack (auto mode, control node)
+sudo microstack init --auto --control
+
+# Check OpenStack client version
+microstack.openstack --version
+
+# Retrieve keystore password
+sudo snap get microstack config.credentials.keystone-password
+
+# Check IP addresses
+ip a
