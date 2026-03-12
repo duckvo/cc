@@ -3,7 +3,7 @@
 sudo apt update && sudo apt upgrade -y
 
 # Check CPU virtualization support
-sudo grep -c "vmx\|svm" /proc/cpuinfo
+sudo grep -c "vmx\|svm" /proc/cpuinfo  
 
 # Install CPU checker
 sudo apt install cpu-checker -y
@@ -28,6 +28,13 @@ sudo apt update && sudo apt upgrade -y
 
 # Install MicroStack from the beta channel
 sudo snap install microstack --beta
+sudo snap install microstack --channel=beta
+
+#if doesnt install
+sudo apt update
+sudo apt install snapd -y
+sudo snap install core
+sudo snap refresh
 
 # Verify installation
 snap list microstack
